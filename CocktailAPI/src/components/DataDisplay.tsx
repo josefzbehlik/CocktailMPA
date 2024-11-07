@@ -1,29 +1,39 @@
 import React, { FC, useState, useEffect } from "react";
 import { Cocktail } from "../types";
 
-interface DataDisplayProps {
-  loading: boolean;
-  error: string | null;
-  data: any;
-}
+// The DataDisplay component will display the data from the API
+const DataDisplay: FC = () => {
+    const [cocktail, setCocktail] = useState<Cocktail | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const [search, setSearch] = useState<string>("");
 
-const DataDisplay: FC<DataDisplayProps> = ({ loading, error, data }) => {
-  return (
-    <>
-      {loading && <p>Loading...</p>}
-      {error && <p>CHYBA: {error}</p>}
-      {data && data.drinks && (
+
+    useEffect(() => {
+
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error.message);
+                setLoading(false);
+            });
+    }, []);
+
+    return (
         <>
-          {data.drinks.map((drink: any) => (
-            <div key={drink.idDrink}>
-              <img src={drink.strDrinkThumb} alt={drink.strDrink} />
-              <p>{drink.strDrink}</p>
-            </div>
-          ))}
-        </>
-      )}
-    </>
-  );
+        {loading && <p>Loading...</p>}
+        {error && <p>CHYBA: {error}</p>}
+        {cocktail && (
+            <>
+                <h2>{cocktail.value}</h2>
+                <img src={cocktail.icon_url} alt={cocktail.value} />
+          </>
+        )}
+      </>
+    );
 };
 
 export default DataDisplay;
