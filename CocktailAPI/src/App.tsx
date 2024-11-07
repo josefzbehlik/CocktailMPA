@@ -1,17 +1,24 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import DataDisplay from './components/DataDisplay';
-import  SearchBar  from './components/SearchBar.tsx'
-import './App.css'
+import SearchBar from './components/SearchBar';
+import './App.css';
+import { Cocktail } from './types';
 
 function App() {
-
+  const [search, setSearch] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<any>(null);
 
   return (
     <>
       <SearchBar />
-      <DataDisplay />
+
+      <DataDisplay
+
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

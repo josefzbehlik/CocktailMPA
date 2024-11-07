@@ -7,8 +7,9 @@ const DataDisplay: FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
+
     useEffect(() => {
-        fetch("www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
+        fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito")
             .then((response) => response.json())
             .then((data) => {
                 setCocktail(data);

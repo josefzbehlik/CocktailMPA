@@ -1,5 +1,8 @@
 import React, {FC, useState, useEffect} from "react";
 
+
+
+
 // The SearchBar component will allow the user to search for a cocktail
 const SearchBar: FC = () => {
     const [search, setSearch] = useState<string>("");
@@ -12,7 +15,7 @@ const SearchBar: FC = () => {
         setLoading(true);
         setError(null);
 
-        fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
