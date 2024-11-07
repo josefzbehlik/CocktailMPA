@@ -12,10 +12,17 @@ function App() {
 
   return (
     <>
-      <SearchBar />
-
+      <SearchBar
+        search={search}
+        setSearch={setSearch}
+        setLoading={setLoading}
+        setError={setError}
+        setData={setData}
+      />
       <DataDisplay
-
+        loading={loading}
+        error={error}
+        data={data}
       />
     </>
   );
