@@ -1,35 +1,24 @@
 import React, {FC, useState, useEffect} from "react";
-import { Cocktail } from "../types";
 
-
+interface SearchBarProps {
+    onSearchChange: (search: string) => void;
+  }
 
 
 // The SearchBar component will allow the user to search for a cocktail
-const SearchBar: FC = () => {
+const SearchBar: FC<SearchBarProps> = ({onSearchChange}) => {
     const [search, setSearch] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const [cocktail, setCocktail] = useState<Cocktail | null>(null);
+
 
 
     useEffect(() => {
-        if (search === "") return;
-
-        setLoading(true);
-        setError(null);
-
-        fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
-            .then((response) => response.json())
-            .then((data) => {
-
-                console.log(data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                setError(error.message);
-                setLoading(false);
-            });
-    }, [search]);
+        if (search.length >= 4) {
+        onSearchChange(search);
+      }
+    }, [search, onSearchChange]);
+    
 
     return (
         <>

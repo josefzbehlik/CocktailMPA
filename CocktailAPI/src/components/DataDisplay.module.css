@@ -1,0 +1,29 @@
+.text {
+    font-size: 1.5em;
+    margin: 1em;
+  }
+  
+  .body {
+    font-size: 2em;
+    margin: 1em;
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+    margin: 1em;
+  }
+  
+  .cocktailContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+  }
+  
+  .column {
+    flex: 1;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }

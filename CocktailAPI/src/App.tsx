@@ -6,18 +6,18 @@ import './App.css';
 
 function App() {
   const [search, setSearch] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<any>(null);
-  const [cocktail, setCocktail] = useState<any>(null);
-  
+
+
+  const handleSearchChange = (newSearch: string) => {
+    setSearch(newSearch);
+  };
 
   return (
-    <>
-      <SearchBar />
+    <div className="app-container">
+      <SearchBar onSearchChange={handleSearchChange}/>
 
-      <DataDisplay />
-    </>
+      <DataDisplay search={search}/>
+    </div>
   );
 }
 
